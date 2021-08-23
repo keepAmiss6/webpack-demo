@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>zytest</title>
+<style type="text/css">
+	.father{
+		width: 500px;
+		height: 500px;
+		background: gray;
+		/*position: relative;*/
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	/*.son{
+		width: 200px;
+		height: 200px;
+		background: pink;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin:auto;
+	}*/
+	.son{
+		width: 200px;
+		height: 200px;
+		background:pink;
+		/*position: absolute;
+		top: 50%;
+		left:50%;
+		margin-left: -100px;
+		margin-top: -100px
+		transform: translate(-50%,-50%);*/
+	}
+	.tran{
+		width: 0; 
+		height: 0;
+		border-left: 100px solid red;
+		border-top: 100px solid transparent;
+		border-bottom: 100px solid transparent;
+		/*border-left: 100px solid red;
+		border: 100px solid;
+		border-left-color: red;
+		border-right-color: transparent;
+		border-bottom-color: transparent;
+		border-top-color: transparent;*/
+	}
+</style>
+</head>
+<body>
+	<button type="button" id="testbtn">测试防抖函数</button>
+<div style="width: 1rem;height: 1rem;background: pink"></div>
+<div class="father">
+	<div class="son"></div>
+</div>
+<div class="tran"></div>
+<p id="demo">单击按钮升序排列数组。</p>
+<button onclick="myFunction()">点我</button>
+
+</body>
+<script>
+	function debound(fn,delay){
+			var timer=null;
+			return function(){
+				//clearTimeout(timer);
+				//timer=setTimeout(function(){
+				//	fn()
+				//},delay)
+				var postwind=window.open('file:///C:/desktop/tes2.html','title')
+				postwind.postMessage('nice to message you','file:///C:/desktop/tes2.html')
+			}
+		}
+
+		document.getElementById('testbtn').onclick=debound(function(){alert(111)},2000)
+
+	window.onload=function(){	
+		var sayname;
+		function sayname(){
+
+		}
+		alert(sayname);
+		var width=document.documentElement.clientWidth;
+		var htmlNode=document.querySelector('html');
+		htmlNode.style.fontSizz=width+'px';
+}
+var arr=[5,4,2,3,1];
+for(var i=0;i<arr.length-1;i++){
+	for(var j=0;j<arr.length-1-i;j++){
+		if(arr[j]>arr[j+1]){
+			var temp=arr[j];
+			arr[j]=arr[j+1];
+			arr[j+1]=temp;
+		}
+	}
+}
+//console.log(arr)
+var arr2=[1,2,3,4,5,6];
+//遍历的轮数arr2.length/2次
+for(var i=0;i<arr2.length/2;i++){
+	//arr[0]和arr[arr.length-1-0]交换
+	//arr[1]和arr[arr.lenght-1-1]交换
+	//arr[2]和arr[arr.lenght-1-2]交换
+	var temp=arr2[i];
+	arr2[i]=arr2[arr2.length-1-i]
+	arr2[arr2.length-1-i]=temp;
+}
+//console.log(arr2)
+//思路：创建一个新数组，把原数组的第一个元素赋值给新数组的第一个元素
+//把原数组的每个元素分别和新数组的每个元素进行笔记
+var arr3=[3,3,5,6,4,4,9,9];
+var newArr=[];
+newArr[0]=arr3[0]
+for(var i=0;i<arr3.length;i++){
+	for(var j=0;j<newArr.length;j++){
+		//如果相等了，则证明已存在，没有再比下去的必要了，结束内循环
+		if(newArr[j]===arr3[i]){
+			break
+		}
+		//一直没有找到相当的，且j已到了最后，证明newArr已经遍历完，这是插入这个数
+		if(j===newArr.length-1){
+			newArr.push(arr3[i])
+		}
+	}
+}
+//console.log(newArr)
+
+var arr4=[1,1,undefined,undefined,null,null,{},{},NaN,NaN]
+for(var a=0;a<arr4.length;a++){
+	for(var b=a+1;b<arr4.length;b++){
+		if(arr4[a]===arr4[b]){
+			arr4.splice(b,1);
+			b--;
+		}
+	}
+}
+//console.log(arr4)
+var arr5=[1,undefined,null,undefined,null,{},{},NaN,NaN,1]
+var arr6=arr5.sort()
+//console.log(arr6)
+var arr7=[arr6[0]]
+for(var c=1;c<arr6.length;c++){
+	if(arr6[c]!==arr6[c-1]){
+		arr7.push(arr6[c])
+	}
+}
+//console.log(arr7)
+var arrtest=[1,undefined,null,undefined,null,{},{},NaN,NaN,1,true,true]
+var newarrtest=[];
+for(let item of arrtest){
+	if(!newarrtest.includes(item)){
+		newarrtest.push(item)
+	}
+}
+//console.log(newarrtest)
+
+var arr9 = [{},{},1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a'];
+function unique(arr) {
+    var obj = {};
+    return arr.filter(function(item, index, arr){
+        return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
+    })
+}
+    
+       // console.log(unique(arr9))
+
+ function unique1(arr){
+ 	return arr.filter(function(item,index,arr){
+ 		return arr.indexOf(item)===index
+ 	})
+ }
+ //console.log(unique1(arr9))
+ function unique2(arr){
+    return arr.reduce((prev,cur) => {
+    	if(prev.includes(cur)) {
+    	return prev
+    }else{
+    		var aa=[...prev,cur]
+    		return aa
+    	}});
+}
+
+console.log(unique2(arr9));
+
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>zytest</title>
+<script src="https://cdn.bootcdn.net/ajax/libs/es6-promise/4.2.8/es6-promise.auto.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=6yAoynmTPNlTBa8z1X4LfwGE"></script>
+<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+
+<style type="text/css">
+	
+</style>
+</head>
+<body>
+	<button type="button" id="testbtn">测试防抖函数</button>
+	<p id='position'></p>
+</body>
+<script type="module">
+	//"use strict";
+	window.navigator.geolocation.getCurrentPosition((position)=>{
+		debugger
+		 var currentLat = position.coords.latitude;
+         var currentLon = position.coords.longitude;
+         var pt = new BMap.Point(currentLon, currentLat);
+                    var geoc = new BMap.Geocoder();
+                    geoc.getLocation(pt, function (rs) {
+                        var addComp = rs.addressComponents;
+                     
+                        //alert(JSON.stringify(addComp));
+                        var city = addComp.city;                     
+                     
+                                    //获得具体街道信息  
+                       var texts = addComp.district + "-" + addComp.street + "-" + addComp.streetNumber;
+                            document.getElementById('position').innerHTML=texts
+                     
+ 
+ 
+                    });
+	})
+	
+		//console.log(a)
+		let a=4
+	
+	function test(para1,par2){
+		arguments[1]=10;
+		console.log('argument[1]',arguments[1])
+		console.log(par2)
+	}
+	test(1,20)
+window.addEventListener("message", function(e){
+	debugger
+	alert(e)
+}, false);
+</script>
+</html>

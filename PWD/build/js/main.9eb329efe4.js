@@ -1,0 +1,1 @@
+"serviceWorker"in navigator&&window.addEventListener("load",(()=>{navigator.serviceWorker.register("/service-worker.js").then((()=>{console.log("sw注册成功了，可以离线访问了")})).catch((()=>{console.log("sw注册失败")}))}));

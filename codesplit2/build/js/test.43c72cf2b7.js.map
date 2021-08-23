@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./test.js"],"names":["mode","x","y","compare"],"mappings":"uFAAO,SAASA,EAAKC,EAAEC,GACnB,OAAOD,EAAEC,EAEN,SAASC,EAAQF,EAAEC,GACtB,OAAOD,EAAEC,E","file":"js/test.43c72cf2b7.js","sourcesContent":["export function mode(x,y){\r\n    return x%y\r\n}\r\nexport function compare(x,y){\r\n    return x<y\r\n}"],"sourceRoot":""}
